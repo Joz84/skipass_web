@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@station) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :city %>
+    <%= f.input :address %>
+    <%= f.input :num %>
+    <%= f.input :latitude %>
+    <%= f.input :longitude %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
