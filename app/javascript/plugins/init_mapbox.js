@@ -3,6 +3,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 var Highcharts = require('highcharts'); 
 
+const bestStation = (lat, lon, markers) => {
+    const distances = markers.map((marker) => {
+        const distance = Math.sqrt((lat - marker.lat)**2 + (lon - marker.lng)**2)
+        return {num: marker.num, distance: distance}
+    })
+    return distances.sort((a, b) => a.distance - b.distance)[0].num
+}
+
 const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
@@ -16,6 +24,7 @@ const initMapbox = () => {
 
     const results = document.querySelector("#results");
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+    const apiUrl = mapElement.dataset.apiUrl;
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
@@ -36,15 +45,17 @@ const initMapbox = () => {
     map.on('click', (e) => {
         console.dir(e.lngLat);
 
-        const planet_id = Math.ceil(Math.random() * 60);
-        fetch(`https://swapi.dev/api/planets/${planet_id}`)
+        const numStation = bestStation(e.lngLat.lat, e.lngLat.lng, markers)
+        console.dir(numStation)
+
+        fetch(`${apiUrl}/?id_station=${numStation}`)
         .then(response => response.json())
         .then((data) => {
             results.innerHTML = `
             <h3>Résulats</h3>
             <p>Latitude: ${e.lngLat.lat}</p>
             <p>Longitude: ${e.lngLat.lng}</p>
-            <p>Star Wars Planet Name: ${data["name"]}</p>
+            <p>Star Wars Planet Name: ${data}</p>
             `
             console.log(data);
 
@@ -83,8 +94,6 @@ const initMapbox = () => {
                 }]
             });
           
-
-
         });
     });
 
