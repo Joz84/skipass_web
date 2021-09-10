@@ -1,9 +1,16 @@
+<div class="wrapper">
+    <div class="rectangle-top"></div>
+    <div class="triangle-topleft"></div>
+    <div class="triangle-bottomright">coco</div>
+</div>
+
 <div class="container text-center mt-5">
     <h1>Sky Pass</h1>
     <p>Toujours un temps d'avance!</p>
 
+
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 pb-4">
             <div id="map"
                 style="width: 100%; height: 600px;"
                 data-markers="<%= @markers.to_json %>"
@@ -12,9 +19,21 @@
                 ></div>
         </div>
         <div class="col-md-4">
-            <div id="results" class="text-center"></div>
-            <div id="chart-container"></div>
+            <div id="results" class="text-center card p-3" style="height: 600px;">
+                <h3>Prédiction Machine Learning</h3>
+            </div>
+            <%# <div id="chart-container"></div> %>
         </div>
     </div>
+
+    <a class="weatherwidget-io" href="https://forecast7.com/fr/44d84n0d58/bordeaux/" data-label_1="BORDEAUX" data-label_2="WEATHER" data-theme="original" >BORDEAUX WEATHER</a>
+
+
+    <div>
+       <%= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius eligendi rem similique provident assumenda a laborum culpa reiciendis. Tempore commodi magni mollitia ab veniam! Delectus magni illo similique sed perspiciatis!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque facere voluptates quo. Mollitia error, ratione, animi dolor alias corporis ipsa perspiciatis rem earum veritatis, quidem velit nulla sed reiciendis."* 100 %>
+    </div>
+
+
 </div>
 

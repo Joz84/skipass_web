@@ -13,6 +13,45 @@
 @import "components/index";
 @import "pages/index";
 
-body {
-    background-image: asset-url("bg.jpg");
+.color-white {
+    color: white !important;
 }
+
+.wrapper {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 90vh;
+    background-attachment: fixed;
+    background-image: asset-url("bg3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.rectangle-top {
+    position: absolute;
+    width: 100%;
+    height: 10vh;
+    top: 0px;
+    left: 0px;
+    background: #F4F4F4;
+}
+.triangle-bottomright {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0px;
+    left: 0px;
+    border-bottom: 200px solid #F4F4F4;
+    border-left: 2000px solid transparent;
+  }
+
+  .triangle-topleft {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: calc(10vh + 0px);
+    left: 0px;
+    border-top: 200px solid #F4F4F4;
+    border-right: 2000px solid transparent;
+  }
