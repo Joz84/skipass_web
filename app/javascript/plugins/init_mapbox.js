@@ -55,7 +55,10 @@ const initMapbox = () => {
             <h3>Résulats</h3>
             <p>Latitude: ${e.lngLat.lat}</p>
             <p>Longitude: ${e.lngLat.lng}</p>
-            <p>Star Wars Planet Name: ${data}</p>
+            <p>temperature dans 6h: ${data['t']}</p>
+            <p>pression dans 6h: ${data['p']}</p>
+            <p>humidité dans 6h: ${data['u']}</p>
+            <p>pluie dans 6h: ${data['r'] ? 'oui' : 'non'}</p>
             `
             console.log(data);
 
